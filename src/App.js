@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-//import Button from '@material/react-button/dist'; // /index.js is implied
-import Button from '@material-ui/core/Button';
-import logo from './logo.svg';
 import './App.css';
 
 //Pages
