@@ -38,7 +38,6 @@ class Detail extends Component {
 
   handleChangeUnits = (fahrenheit) => {
     console.log(fahrenheit);
-    //this.state.fahrenheit = !fahrenheit;
     //this.setState({fahrenheit: !fahrenheit});
   }
 
