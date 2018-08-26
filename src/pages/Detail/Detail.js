@@ -1,51 +1,119 @@
 import React, { Component } from "react";
-//import API from '../components/API'
+import API from '../../components/API'
+import Icon from '@material-ui/core/Icon';
+import Switch from '@material-ui/core/Switch';
+
+function CallAPI(props) {
+  const data = props.data;
+  if (data !== null) {
+    return null;
+  }
+  return <API city={ props.city } type={ 'city' } handleWeatherData={ props.handleWeatherData } units={ props.fahrenheit } />
+}
+
+function ShowUnits(props) {
+  const fahrenheit = props.fahrenheit;
+  if(!fahrenheit){
+    return 'ºC';
+  }
+  return 'ºF';
+}
 
 class Detail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
-      isLoaded: false,
-      items: []
+      data: null,
+      fahrenheit: false
     };
   }
 
-  componentDidMount() {
-    //fetch("api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=ca4ac610fd531bc282c1067eb6caf2e4")
-    fetch('https://jsonplaceholder.typicode.com/todos/1')
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result
-          });
+  handleWeatherData = (weatherData) => {
+    this.setState({data: weatherData});
+  }
 
-          console.log(this.state);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+  handleClearCity = () => {
+    this.props.handleClearCity();
+  }
+
+  handleChangeUnits = (fahrenheit) => {
+    console.log(fahrenheit);
+    //this.state.fahrenheit = !fahrenheit;
+    //this.setState({fahrenheit: !fahrenheit});
   }
 
   render() {
     return (
       <div className="Detail">
-        <div>These are Weather Icons from Detail page!</div>
+        <CallAPI data={ this.state.data } city={ this.props.city } type={ 'city' } handleWeatherData={ this.handleWeatherData } fahrenheit={ this.state.fahrenheit } />
         <div>
-          <i className="wi wi-night-sleet"></i>
-          <i className="wi wi-day-sunny"></i>
-          <i className="wi wi-day-fog"></i>
-          <i className="wi wi-day-rain"></i>
-          <i className="wi wi-day-snow-wind"></i>
+          <div className="Detail-header">
+            <div className="Detail-header-back"><a href="javascript:void(0)" onClick={this.handleClearCity}><Icon>keyboard_backspace</Icon></a></div>
+            <div className="Detail-header-city">Tallinn</div>
+            <div className="Detail-header-switch"><ShowUnits fahrenheit={ this.state.fahrenheit } /><Switch onChange={ this.handleChangeUnits(this.state.fahrenheit) } /></div>
+          </div>
+          <div className="Detail-day">Tuesday, December 6th 2016</div>
+          <div className="Detail-day-weather">Light snow</div>
+          <div className="Detail-details">
+              <div className="Detail-details-temperature">
+                <div>4ºC <i className="wi wi-day-snow"></i></div>
+              </div>
+              <div className="Detail-details-stages">
+                  <div className="Detail-details-stages-stage">
+                    <div className="Detail-details-stages-stage-each">Morning</div>
+                    <div className="Detail-details-stages-stage-temperature">5ºC</div>
+                  </div>
+                  <div className="Detail-details-stages-stage">
+                    <div className="Detail-details-stages-stage-each">Day</div>
+                    <div className="Detail-details-stages-stage-temperature">4ºC</div>
+                  </div>
+                  <div className="Detail-details-stages-stage">
+                    <div className="Detail-details-stages-stage-each">Evening</div>
+                    <div className="Detail-details-stages-stage-temperature">0ºC</div>
+                  </div>
+                  <div className="Detail-details-stages-stage">
+                    <div className="Detail-details-stages-stage-each">Night</div>
+                    <div className="Detail-details-stages-stage-temperature">-2ºC</div>
+                  </div>
+              </div>
+          </div>
+          <div className="Detail-week">
+            <div className="Detail-week-day">
+              <div className="Detail-week-day-each">Tuesday</div>
+              <div className="Detail-week-day-icon"><i className="wi wi-snow"></i></div>
+              <div className="Detail-week-day-temperature">4ºC</div>
+            </div>
+            <div className="Detail-week-day">
+              <div className="Detail-week-day-each">Wednesday</div>
+              <div className="Detail-week-day-icon"><i className="wi wi-day-sunny"></i></div>
+              <div className="Detail-week-day-temperature">-7ºC</div>
+            </div>
+            <div className="Detail-week-day">
+              <div className="Detail-week-day-each">Thursday</div>
+              <div className="Detail-week-day-icon"><i className="wi wi-snow"></i></div>
+              <div className="Detail-week-day-temperature">0ºC</div>
+            </div>
+            <div className="Detail-week-day">
+              <div className="Detail-week-day-each">Friday</div>
+              <div className="Detail-week-day-icon"><i className="wi wi-rain"></i></div>
+              <div className="Detail-week-day-temperature">3ºC</div>
+            </div>
+            <div className="Detail-week-day">
+              <div className="Detail-week-day-each">Saturday</div>
+              <div className="Detail-week-day-icon"><i className="wi wi-snow"></i></div>
+              <div className="Detail-week-day-temperature">4ºC</div>
+            </div>
+            <div className="Detail-week-day">
+              <div className="Detail-week-day-each">Sunday</div>
+              <div className="Detail-week-day-icon"><i className="wi wi-snow"></i></div>
+              <div className="Detail-week-day-temperature">-2ºC</div>
+            </div>
+            <div className="Detail-week-day">
+              <div className="Detail-week-day-each">Monday</div>
+              <div className="Detail-week-day-icon"><i className="wi wi-snow"></i></div>
+              <div className="Detail-week-day-temperature">-2ºC</div>
+            </div>
+          </div>
         </div>
       </div>
     );

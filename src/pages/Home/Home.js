@@ -6,45 +6,17 @@ import parse from 'autosuggest-highlight/parse';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
-import Popper from '@material-ui/core/Popper';
 import { withStyles } from '@material-ui/core/styles';
+import cities from 'cities-list';
 
-const suggestions = [
-  { label: 'Afghanistan' },
-  { label: 'Aland Islands' },
-  { label: 'Albania' },
-  { label: 'Algeria' },
-  { label: 'American Samoa' },
-  { label: 'Andorra' },
-  { label: 'Angola' },
-  { label: 'Anguilla' },
-  { label: 'Antarctica' },
-  { label: 'Antigua and Barbuda' },
-  { label: 'Argentina' },
-  { label: 'Armenia' },
-  { label: 'Aruba' },
-  { label: 'Australia' },
-  { label: 'Austria' },
-  { label: 'Azerbaijan' },
-  { label: 'Bahamas' },
-  { label: 'Bahrain' },
-  { label: 'Bangladesh' },
-  { label: 'Barbados' },
-  { label: 'Belarus' },
-  { label: 'Belgium' },
-  { label: 'Belize' },
-  { label: 'Benin' },
-  { label: 'Bermuda' },
-  { label: 'Bhutan' },
-  { label: 'Bolivia, Plurinational State of' },
-  { label: 'Bonaire, Sint Eustatius and Saba' },
-  { label: 'Bosnia and Herzegovina' },
-  { label: 'Botswana' },
-  { label: 'Bouvet Island' },
-  { label: 'Brazil' },
-  { label: 'British Indian Ocean Territory' },
-  { label: 'Brunei Darussalam' },
-];
+const suggestions = [];
+
+function loadCities() {
+  for (var city in cities){
+    let newCityObj = { label: city };
+    suggestions.push(newCityObj);
+  }
+}
 
 function renderInputComponent(inputProps) {
   const { classes, inputRef = () => {}, ref, ...other } = inputProps;
@@ -141,13 +113,15 @@ const styles = theme => ({
 });
 
 class Home extends React.Component {
-  popperNode = null;
 
   state = {
     single: '',
-    popper: '',
     suggestions: [],
   };
+
+  componentWillMount(){
+    loadCities();
+  }
 
   handleSuggestionsFetchRequested = ({ value }) => {
     this.setState({
@@ -167,6 +141,10 @@ class Home extends React.Component {
     });
   };
 
+  handleCity = (event, { suggestionValue }) => {
+    this.props.handleCity(suggestionValue);
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -177,6 +155,7 @@ class Home extends React.Component {
       onSuggestionsClearRequested: this.handleSuggestionsClearRequested,
       getSuggestionValue,
       renderSuggestion,
+      onSuggestionSelected: this.handleCity,
     };
 
     return (
@@ -185,7 +164,7 @@ class Home extends React.Component {
           {...autosuggestProps}
           inputProps={{
             classes,
-            placeholder: 'Search a country (start with a)',
+            placeholder: 'City',
             value: this.state.single,
             onChange: this.handleChange('single'),
           }}
@@ -202,37 +181,6 @@ class Home extends React.Component {
           )}
         />
         <div className={classes.divider} />
-        <Autosuggest
-          {...autosuggestProps}
-          inputProps={{
-            classes,
-            label: 'Label',
-            placeholder: 'With Popper',
-            value: this.state.popper,
-            onChange: this.handleChange('popper'),
-            inputRef: node => {
-              this.popperNode = node;
-            },
-            InputLabelProps: {
-              shrink: true,
-            },
-          }}
-          theme={{
-            suggestionsList: classes.suggestionsList,
-            suggestion: classes.suggestion,
-          }}
-          renderSuggestionsContainer={options => (
-            <Popper anchorEl={this.popperNode} open={Boolean(options.children)}>
-              <Paper
-                square
-                {...options.containerProps}
-                style={{ width: this.popperNode ? this.popperNode.clientWidth : null }}
-              >
-                {options.children}
-              </Paper>
-            </Popper>
-          )}
-        />
       </div>
     );
   }

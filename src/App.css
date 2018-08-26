@@ -919,33 +919,87 @@
 .wi-wind-beaufort-12:before {
   content: ""; }
 
+.Detail-header {
+  padding: 10px 0;
+  display: -webkit-box;
+  display: box; }
+  .Detail-header-back {
+    width: 10%;
+    text-align: left; }
+  .Detail-header-city {
+    text-align: left;
+    font-size: 24px;
+    width: 80%; }
+  .Detail-header-switch {
+    position: relative;
+    text-align: right; }
+    .Detail-header-switch > span {
+      position: absolute;
+      top: -15px; }
+
+.Detail-day {
+  width: 100%;
+  text-align: left;
+  font-size: 24px;
+  font-weight: 100;
+  padding: 10px 0; }
+  .Detail-day-weather {
+    text-align: left;
+    font-weight: 100;
+    padding: 10px 0; }
+
+.Detail-details {
+  display: -webkit-box;
+  display: box;
+  color: #ff9167;
+  padding: 10px 0; }
+  .Detail-details-temperature {
+    width: 50%;
+    text-align: left;
+    font-size: 64px;
+    font-weight: 400; }
+  .Detail-details-stages {
+    width: 50%;
+    text-align: left;
+    font-weight: 100; }
+    .Detail-details-stages-stage {
+      display: -webkit-box;
+      display: box; }
+      .Detail-details-stages-stage-each {
+        text-align: left;
+        width: 30%; }
+      .Detail-details-stages-stage-temperature {
+        text-align: right; }
+
+.Detail-week {
+  display: -webkit-box;
+  display: -webkit-box;
+  padding: 10px 0; }
+  .Detail-week-day {
+    width: 14.3%; }
+    .Detail-week-day-each {
+      font-size: 12px;
+      font-weight: 100; }
+    .Detail-week-day-icon {
+      font-size: 24px;
+      padding: 10px 0; }
+    .Detail-week-day-temperature {
+      font-size: 12px;
+      font-weight: 100; }
+
 .App {
+  font-family: "Roboto";
   height: 100vh;
   text-align: center;
   background-image: linear-gradient(to bottom right, #fc746c, #ff9167); }
   .App-panel {
     position: relative;
-    top: 25em;
+    top: 10em;
     background: #fff;
     max-width: 600px;
     margin: 0 auto;
     padding: 2em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
-  .App-header {
-    background-color: #222;
-    height: 150px;
-    padding: 20px;
-    color: white; }
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px; }
-  .App-title {
-    font-size: 1.5em; }
-  .App-intro {
-    font-size: large; }
-    .App-intro h1 {
-      color: red;
-      font-family: "Roboto"; }
 
 @keyframes App-logo-spin {
   from {

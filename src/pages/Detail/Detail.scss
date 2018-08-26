@@ -1,0 +1,84 @@
+.Detail {
+  &-header{
+    padding: 10px 0;
+    display: -webkit-box;
+    display: box;
+    &-back{
+      width: 10%;
+      text-align: left;
+    }
+    &-city{
+      text-align: left;
+      font-size: 24px;
+      width: 80%;
+    }
+    &-switch{
+      position: relative;
+      text-align: right;
+      > span {
+        position: absolute;
+        top: -15px
+      }
+    }
+  }
+  &-day {
+    width: 100%;
+    text-align: left;
+    font-size: 24px;
+    font-weight: 100;
+    padding: 10px 0;
+    &-weather {
+      text-align: left;
+      font-weight: 100;
+      padding: 10px 0;
+    }
+  }
+  &-details {
+    display: -webkit-box;
+    display: box;
+    color: #ff9167;
+    padding: 10px 0;
+    &-temperature {
+      width: 50%;
+      text-align: left;
+      font-size: 64px;
+      font-weight: 400;
+    }
+    &-stages {
+      width: 50%;
+      text-align: left;
+      font-weight: 100;
+      &-stage{
+        display: -webkit-box;
+        display: box;
+        &-each{
+          text-align: left;
+          width: 30%;
+        }
+        &-temperature {
+          text-align: right;
+        }
+      }
+    }
+  }
+  &-week {
+    display: -webkit-box;
+    display: -webkit-box;
+    padding: 10px 0;
+    &-day {
+      width: 14.3%;
+      &-each {
+        font-size: 12px;
+        font-weight: 100;
+      }
+      &-icon {
+        font-size: 24px;
+        padding: 10px 0;
+      }
+      &-temperature {
+        font-size: 12px;
+        font-weight: 100;
+      }
+    }
+  }
+}
