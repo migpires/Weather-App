@@ -926,6 +926,8 @@
   .Detail-header-back {
     width: 10%;
     text-align: left; }
+    .Detail-header-back a {
+      color: black; }
   .Detail-header-city {
     text-align: left;
     font-size: 24px;
@@ -946,6 +948,7 @@
   .Detail-day-weather {
     text-align: left;
     font-weight: 100;
+    text-transform: capitalize;
     padding: 10px 0; }
 
 .Detail-details {

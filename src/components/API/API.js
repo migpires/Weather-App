@@ -5,9 +5,9 @@ function CallType(props) {
   const handleCall = props.handleCall;
   console.log(props);
   if(type !== 'coordinates') {
-    handleCall("http://api.openweathermap.org/data/2.5/forecast/daily?q=" + props.city + "&cnt=7&APPID=a83d7aa0296e6d9a171b032d1e34c4b5");
+    handleCall("http://api.openweathermap.org/data/2.5/weather?q=" + props.city + "&units=metric&APPID=ca4ac610fd531bc282c1067eb6caf2e4");
   } else {
-    handleCall("http://api.openweathermap.org/data/2.5/forecast/daily?lat=35&lon=139&cnt=7");
+    handleCall("http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139");
   }
   return null;
 }

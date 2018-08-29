@@ -6,6 +6,9 @@
     &-back{
       width: 10%;
       text-align: left;
+      a {
+        color: black;
+      }
     }
     &-city{
       text-align: left;
@@ -30,6 +33,7 @@
     &-weather {
       text-align: left;
       font-weight: 100;
+      text-transform: capitalize;
       padding: 10px 0;
     }
   }
